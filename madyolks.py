@@ -41,7 +41,7 @@ fig.add_trace(go.Scatter(
 # Update layout for stacked bars with a **single Y-axis**
 fig.update_layout(
     barmode="stack",
-    title="Revenue and Net Profit Over Time",
+    title="Group Revenue and Net Profit Over Time",
     xaxis_title="Weeks",
     yaxis_title="Revenue & Net Profit (€)",
     template="plotly_white",
