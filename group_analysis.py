@@ -2,31 +2,11 @@ import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-def load_and_process_data(file_path):
-    # Read CSV with first column as index
-    df = pd.read_csv(file_path, index_col=0)
-    
-    # Drop the row containing 'EUR' values
-    df = df[~df.index.isin(['EUR'])]
-    
-    # Process each column
-    for col in df.columns:
-        # Convert values and handle percentages
-        df[col] = df[col].apply(lambda x: float(str(x).replace(',', '').rstrip('%')) / 100 
-                               if isinstance(x, str) and '%' in str(x)
-                               else float(str(x).replace(',', '')) 
-                               if isinstance(x, str) 
-                               else x)
-
-    # Transpose the dataframe to get weeks as index
-    df = df.transpose()
-    
-    return df
 
 # Import and process the CSV files
-group_df = load_and_process_data('data_files/group.csv')
-rathmines_df = load_and_process_data('data_files/rathmines.csv')
-smithfield_df = load_and_process_data('data_files/smithfield.csv')
+group_df = pd.read_csv('data_files/group.csv', index_col=0)
+rathmines_df = pd.read_csv('data_files/rathmines.csv', index_col=0)
+smithfield_df = pd.read_csv('data_files/smithfield.csv', index_col=0)
 
 def create_dual_axis_chart(df, title):
     # Create figure with secondary y-axis
